@@ -73,6 +73,10 @@ const ExternalMaps = L.Control.extend({
                 title: 'Wikimapia',
                 externalMap: new ExternalMap('https://wikimapia.org/#lat={lat}&lon={lng}&z={zoom}', 3, 22),
             },
+            {
+                title: 'Radio',
+                externalMap: new ExternalMap('https://wikimapia.org/#lat={lat}&lon={lng}&z={zoom}', 3, 22),
+            },
         ],
     },
 

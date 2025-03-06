@@ -6,6 +6,7 @@ import config from './config';
 import '~/lib/leaflet.layer.soviet-topomaps-grid';
 import '~/lib/leaflet.layer.westraPasses';
 import '~/lib/leaflet.layer.wikimapia';
+import '~/lib/leaflet.layer.radio';
 import {GeocachingSu} from '~/lib/leaflet.layer.geocaching-su';
 import {RetinaTileLayer} from '~/lib/leaflet.layer.RetinaTileLayer';
 import {urlViaCorsProxy} from '~/lib/CORSProxy';
@@ -402,7 +403,6 @@ class LayerGroupWithOptions extends L.LayerGroup {
                     isDefault: true,
                     layer: L.tileLayer("https://{s}.tiles.nakarte.me/osport/{z}/{x}/{y}",
                         {
-                            code: 'R',
                             isOverlay: true,
                             isOverlayTransparent: false,
                             tms: true,
@@ -1119,7 +1119,18 @@ class LayerGroupWithOptions extends L.LayerGroup {
                         }
                     )
                 },
-
+                {
+                    title: 'Radio',
+                    isDefault: true,
+                    layer: new L.Radio({
+                        code: 'R',
+                        isOverlay: true,
+                        print: false,
+                        jnx: false,
+                        attribution: '<a href="https://wikimapia.org/">Radio</a>',
+                        tilesBaseUrl: config.wikimapiaTilesBaseUrl,
+                    })
+                },
     ];
 
     const groupsDefs = [
@@ -1151,6 +1162,7 @@ class LayerGroupWithOptions extends L.LayerGroup {
                 'O-sport',
                 'Soviet topo maps grid',
                 'Wikimapia',
+                'Radio',
                 'Mountain passes (Westra)'
             ],
         },
@@ -1280,6 +1292,7 @@ class LayerGroupWithOptions extends L.LayerGroup {
         'Strava heatmap (winter)',
         'Soviet topo maps grid',
         'Wikimapia',
+        'Radio',
 
         // point overlays
         'Mountain passes (Westra)',
