@@ -1126,9 +1126,7 @@ class LayerGroupWithOptions extends L.LayerGroup {
                         code: 'R',
                         isOverlay: true,
                         print: false,
-                        jnx: false,
-                        attribution: '<a href="https://wikimapia.org/">Radio</a>',
-                        tilesBaseUrl: config.wikimapiaTilesBaseUrl,
+                        jnx: false
                     })
                 },
     ];
