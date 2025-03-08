@@ -107,7 +107,7 @@ function deleteMarker(lng, lat) {
 */
 function mqtt_init(map) {
     // logging.captureMessage('mqtt_init');
-    client = new Paho.Client('192.168.220.8', 9001, "orangepila");
+    client = new Paho.Client('mosquitto', 9001, "orangepila");
     function onConnect() {
         logging.captureMessage("onConnect");
         client.subscribe(subscribeto);
