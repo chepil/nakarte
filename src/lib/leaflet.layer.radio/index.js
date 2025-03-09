@@ -105,6 +105,18 @@ function deleteMarker(lng, lat) {
   localStorage.setItem('markers', JSON.stringify(markers));
 }
 */
+function makeid(length) {
+  let result = '';
+  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  const charactersLength = characters.length;
+  let counter = 0;
+  while (counter < length) {
+    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    counter += 1;
+  }
+  return result;
+}
+
 function mqtt_init(map) {
     // logging.captureMessage('mqtt_init');
     var host = window.location.host;
@@ -115,7 +127,7 @@ function mqtt_init(map) {
     }
     logging.captureMessage(brokerhost);
 
-    client = new Paho.Client(brokerhost, 9001, "orangepila");
+    client = new Paho.Client(brokerhost, 9001, "orangepila_" + makeid(10));
     function onConnect() {
         logging.captureMessage("onConnect");
         client.subscribe(subscribeto);
