@@ -30,6 +30,33 @@ function getHostName() {
 
 var brokerhost = getHostName();
 
+function addMarker(map, stationId, lat, lng) {
+  if (stationId !== "") {
+    var j = new RadioPoint(stationId, lat, lng);
+    const coord = L.latLng(lat, lng);
+
+    const icon = new L.DivIcon({
+      className: 'my-div-icon',
+      html: '<span class="radio-tooltip">' + stationId + '</span>'
+    });
+
+    arrayOfPoints.push(j);
+    const marker = L.marker(
+        coord,
+        {
+          id: stationId,
+          icon: icon,
+          fillColor: '#00FFFF',
+          draggable: false,
+          autoClose: false,
+          contextmenu: true,
+          permanent: true,
+        });
+    marker.id = stationId;
+    marker.options.name = stationId;
+    marker.addTo(map).openTooltip();
+  }
+}
 // Load markers
 function loadMarkers(map) {
   arrayOfPoints.splice();
@@ -52,41 +79,25 @@ function loadMarkers(map) {
           lng = value;
         }
       }
-      if (stationId !== "") {
-        var j = new RadioPoint(stationId, lat, lng);
-        const coord = L.latLng(lat, lng);
-
-        const icon = new L.DivIcon({
-          className: 'my-div-icon',
-          html: '<span class="radio-tooltip">' + stationId + '</span>'
-        });
-
-        arrayOfPoints.push(j);
-        const marker = L.marker(
-            coord,
-            {
-              id: stationId,
-              icon: icon,
-              fillColor: '#00FFFF',
-              draggable: false,
-              autoClose: false,
-              contextmenu: true,
-              permanent: true,
-            });
-        marker.id = stationId;
-        marker.options.name = stationId;
-        marker.addTo(map).openTooltip();
-      }
+      addMarker(map, stationId, lat, lng);
     });
   }
-
   let url = "http://" + brokerhost + ":8081/locations";
-  logging.captureMessage("will request " + url);
-
+  // logging.captureMessage("will request " + url);
   fetch(url)
+      .then((res) => res.json())
       .then(
-          (result) => {
-            logging.captureMessage(result);
+          (markers) => {
+            logging.captureMessage(markers);
+            markers.forEach(function(entry) {
+              var stationId = entry[1];
+              logging.captureMessage(stationId);
+              var lat = entry[3];
+              var lng = entry[4];
+              // var timestamp = entry[0];
+              // var stationtype = entry[2];
+              addMarker(map, stationId, lat, lng);
+            });
           }
       );
 }
