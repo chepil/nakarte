@@ -81,7 +81,7 @@ function loadMarkers(map) {
   }
 
   let url = "http://" + brokerhost + ":8081/locations";
-  logging.captureMessage(url);
+  logging.captureMessage("will request " + url);
 
   fetch(url)
       .then(
