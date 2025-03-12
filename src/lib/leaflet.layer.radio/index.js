@@ -3,6 +3,7 @@ import './style.css';
 // import {openPopupWindow} from '~/lib/popup-window';
 import Paho from 'paho-mqtt';
 import * as logging from '~/lib/logging';
+// import {fetch} from "../xhr-promise";
 
 class RadioPoint {
     constructor(stationId, lat, lng) {
@@ -16,57 +17,78 @@ var arrayOfPoints = [];
 var client;
 let subscribeto = "gpsloc";
 
+function getHostName() {
+  var host = window.location.host;
+  let hp = host.split(":");
+  var brokerhost = host;
+  if (hp.length === 2) {
+    brokerhost = hp[0];
+  }
+  logging.captureMessage(brokerhost);
+  return brokerhost;
+}
+
+var brokerhost = getHostName();
+
 // Load markers
 function loadMarkers(map) {
   arrayOfPoints.splice();
   let markers = localStorage.getItem("markers");
-  if (markers === null) {
-    return;
+  if (markers !== null) {
+    markers = JSON.parse(markers);
+    // logging.captureMessage('markers ', markers);
+
+    markers.forEach(function(entry) {
+      var stationId = "";
+      var lat = 0.0;
+      var lng = 0.0;
+      for (const [key, value] of Object.entries(entry)) {
+        // logging.captureMessage(`${key}: ${value}`);
+        if (key === "stationId") {
+          stationId = value;
+        } else if (key === "lat") {
+          lat = value;
+        } else if (key === "lng") {
+          lng = value;
+        }
+      }
+      if (stationId !== "") {
+        var j = new RadioPoint(stationId, lat, lng);
+        const coord = L.latLng(lat, lng);
+
+        const icon = new L.DivIcon({
+          className: 'my-div-icon',
+          html: '<span class="radio-tooltip">' + stationId + '</span>'
+        });
+
+        arrayOfPoints.push(j);
+        const marker = L.marker(
+            coord,
+            {
+              id: stationId,
+              icon: icon,
+              fillColor: '#00FFFF',
+              draggable: false,
+              autoClose: false,
+              contextmenu: true,
+              permanent: true,
+            });
+        marker.id = stationId;
+        marker.options.name = stationId;
+        marker.addTo(map).openTooltip();
+      }
+    });
   }
 
-  markers = JSON.parse(markers);
-  // logging.captureMessage('markers ', markers);
+  let url = "http://" + brokerhost + ":8081/locations";
+  logging.captureMessage(url);
 
-  markers.forEach(function(entry) {
-    var stationId = "";
-    var lat = 0.0;
-    var lng = 0.0;
-    for (const [key, value] of Object.entries(entry)) {
-      // logging.captureMessage(`${key}: ${value}`);
-      if (key === "stationId") {
-        stationId = value;
-      } else if (key === "lat") {
-        lat = value;
-      } else if (key === "lng") {
-        lng = value;
-      }
-    }
-    if (stationId !== "") {
-      var j = new RadioPoint(stationId, lat, lng);
-      const coord = L.latLng(lat, lng);
-
-      const icon = new L.DivIcon({
-        className: 'my-div-icon',
-        html: '<span class="radio-tooltip">' + stationId + '</span>'
-      });
-
-      arrayOfPoints.push(j);
-      const marker = L.marker(
-          coord,
-          {
-            id: stationId,
-            icon: icon,
-            fillColor: '#00FFFF',
-            draggable: false,
-            autoClose: false,
-            contextmenu: true,
-            permanent: true,
-          });
-      marker.id = stationId;
-      marker.options.name = stationId;
-      marker.addTo(map).openTooltip();
-    }
-  });
+  fetch(url)
+      .then(
+          (result) => {
+            logging.captureMessage(result);
+          }
+      );
 }
 // Store markers
 function storeMarker(marker) {
@@ -119,14 +141,6 @@ function makeid(length) {
 
 function mqtt_init(map) {
     // logging.captureMessage('mqtt_init');
-    var host = window.location.host;
-    let hp = host.split(":");
-    var brokerhost = host;
-    if (hp.length === 2) {
-      brokerhost = hp[0];
-    }
-    logging.captureMessage(brokerhost);
-
     client = new Paho.Client(brokerhost, 9001, "orangepila_" + makeid(10));
     function onConnect() {
         logging.captureMessage("onConnect");
