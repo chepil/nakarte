@@ -1,9 +1,7 @@
 import L from 'leaflet';
 import './style.css';
-// import {openPopupWindow} from '~/lib/popup-window';
 import Paho from 'paho-mqtt';
 import * as logging from '~/lib/logging';
-// import {fetch} from "../xhr-promise";
 
 class RadioPoint {
     constructor(stationId, lat, lng) {
@@ -24,7 +22,6 @@ function getHostName() {
   if (hp.length === 2) {
     brokerhost = hp[0];
   }
-  logging.captureMessage(brokerhost);
   return brokerhost;
 }
 
@@ -235,11 +232,9 @@ function mqtt_init(map) {
 
 L.Radio = L.GridLayer.extend({
         options: {},
-
         initialize: function(options) {
             L.GridLayer.prototype.initialize.call(this, options);
         },
-
         onAdd: function(map) {
             L.GridLayer.prototype.onAdd.call(this, map);
             map.on('mousemove', this.onMouseMove, this);
@@ -249,7 +244,6 @@ L.Radio = L.GridLayer.extend({
             // this.map = map;
             loadMarkers(map);
         },
-
         onRemove: function(map) {
             map.off('mousemove', this.onMouseMove, this);
             L.TileLayer.prototype.onRemove.call(this, map);
@@ -263,19 +257,16 @@ L.Radio = L.GridLayer.extend({
               if (layer instanceof L.Marker) {
                 layer.remove();
               }
-          });
+            });
         },
-
         onMouseMove: function(e) {
             this.lastMousePos = e.latlng;
         },
-
         onZoomEnd: function() {
             this.mapZooming = false;
         },
         onZoomStart: function() {
             this.mapZooming = true;
         },
-
     }
 );

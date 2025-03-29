@@ -64,6 +64,7 @@ module.exports = [
     'src/lib/leaflet.layer.wikimapia/index.js',
     'src/lib/leaflet.layer.wikimapia/wikimapia-loader.js',
     'src/lib/leaflet.layer.radio/index.js',
+    'src/lib/leaflet.layer.localMaps/index.js',
     'src/lib/leaflet.control.track-list/lib/meridian180.js',
     'src/lib/leaflet.control.track-list/lib/services/movescount.js',
     'src/lib/leaflet.control.track-list/lib/services/simpleService.js',

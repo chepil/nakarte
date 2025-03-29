@@ -32,6 +32,7 @@ const filesWithSideEffects = [
     'src/lib/leaflet.layer.westraPasses/index.js',
     'src/lib/leaflet.layer.wikimapia/index.js',
     'src/lib/leaflet.layer.radio/index.js',
+    'src/lib/leaflet.layer.localMaps/index.js',
     'src/lib/leaflet.layer.yandex/index.js',
     'src/lib/leaflet.layer.TileLayer.cutline/index.js',
     'src/lib/leaflet.lineutil.simplifyLatLngs/index.js',

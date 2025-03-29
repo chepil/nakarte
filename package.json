@@ -80,6 +80,7 @@
     "browser-filesaver": "^1.1.1",
     "core-js": "^3.30.1",
     "escape-html": "^1.0.3",
+    "fs": "^0.0.1-security",
     "idb": "^8.0.1",
     "image-promise": "^7.0.1",
     "knockout": "^3.4.0",
@@ -87,12 +88,12 @@
     "leaflet-rotatedmarker": "^0.2.0",
     "load-script": "^2.0.0",
     "mapillary-js": "4.1.1",
+    "paho-mqtt": "^1.0.4",
     "pbf": "^3.0.5",
     "rbush": "^3.0.1",
     "regenerator-runtime": "^0.13.11",
     "tiny-inflate": "^1.0.2",
     "twkb": "^0.2.2",
-    "utf8": "^3.0.0",
-    "paho-mqtt": "^1.0.4"
+    "utf8": "^3.0.0"
   }
 }

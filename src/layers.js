@@ -7,6 +7,7 @@ import '~/lib/leaflet.layer.soviet-topomaps-grid';
 import '~/lib/leaflet.layer.westraPasses';
 import '~/lib/leaflet.layer.wikimapia';
 import '~/lib/leaflet.layer.radio';
+import '~/lib/leaflet.layer.localMaps';
 import {GeocachingSu} from '~/lib/leaflet.layer.geocaching-su';
 import {RetinaTileLayer} from '~/lib/leaflet.layer.RetinaTileLayer';
 import {urlViaCorsProxy} from '~/lib/CORSProxy';
@@ -263,7 +264,7 @@ class LayerGroupWithOptions extends L.LayerGroup {
                     isDefault: true,
                     layer: L.tileLayer("https://slazav.xyz/tiles/hr/{x}-{y}-{z}.png",
                         {
-                            code: 'Q',
+                            code: '',
                             isOverlay: true,
                             isOverlayTransparent: false,
                             tms: false,
@@ -1129,6 +1130,16 @@ class LayerGroupWithOptions extends L.LayerGroup {
                         jnx: false
                     })
                 },
+                {
+                    title: 'Local Maps',
+                    isDefault: true,
+                    layer: new L.LocalMaps({
+                        code: 'Q',
+                        isOverlay: true,
+                        print: false,
+                        jnx: false
+                    })
+                },
     ];
 
     const groupsDefs = [
@@ -1161,6 +1172,7 @@ class LayerGroupWithOptions extends L.LayerGroup {
                 'Soviet topo maps grid',
                 'Wikimapia',
                 'Radio',
+                'Local Maps',
                 'Mountain passes (Westra)'
             ],
         },
@@ -1291,6 +1303,7 @@ class LayerGroupWithOptions extends L.LayerGroup {
         'Soviet topo maps grid',
         'Wikimapia',
         'Radio',
+        'Local Maps',
 
         // point overlays
         'Mountain passes (Westra)',
