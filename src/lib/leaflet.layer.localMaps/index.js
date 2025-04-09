@@ -50,11 +50,11 @@ function loadLocalKmzMaps(map) {
       .then((res) => res.json())
       .then(
           (items) => {
-            items.forEach(function(item) {
+            for (const item of items) {
               let mapname = item['name'];
               let data = item['data'];
               parseKmzMapData(map, mapname, data);
-            });
+            }
           }
       )
       .then(() => {
