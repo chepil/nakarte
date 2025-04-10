@@ -49,6 +49,7 @@ const minimizeStateAuto = 0;
 const minimizeStateMinimized = 1;
 const minimizeStateExpanded = 2;
 
+const layersControl = L.control.layers(null, null, {collapsed: false});
 function isInIframe() {
     // Check if the window is not the top window
     return window.self !== window.top;
@@ -182,8 +183,8 @@ function setUp() { // eslint-disable-line complexity
 
     /* controls top-right corner */
 
-    const layersControl = L.control.layers(null, null, {collapsed: false})
-        .addTo(map);
+    // layersControl = L.control.layers(null, null, {collapsed: false}).addTo(map);
+    layersControl.addTo(map);
     enableLayersControlHotKeys(layersControl);
     enableLayersControlAdaptiveHeight(layersControl);
     enableLayersMinimize(layersControl);
@@ -430,4 +431,4 @@ function setUp() { // eslint-disable-line complexity
     logUsedMaps();
 }
 
-export {setUp};
+export {setUp, layersControl};

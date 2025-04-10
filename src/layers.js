@@ -1137,7 +1137,8 @@ class LayerGroupWithOptions extends L.LayerGroup {
                         code: 'Q',
                         isOverlay: true,
                         print: false,
-                        jnx: false
+                        jnx: false,
+                      checked: false,
                     })
                 },
     ];
@@ -1309,7 +1310,6 @@ class LayerGroupWithOptions extends L.LayerGroup {
         'Mountain passes (Westra)',
         'geocaching.su',
     ];
-
 function getLayers() {
     // set metadata
     for (let layer of layersDefs) {
@@ -1351,7 +1351,6 @@ function getLayers() {
         customLayersOrder: {
             top: orderByTitle['#custom-top'],
             bottom: orderByTitle['#custom-bottom'],
-
         }
     };
 }
