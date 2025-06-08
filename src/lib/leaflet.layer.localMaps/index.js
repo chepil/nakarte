@@ -3,6 +3,7 @@ import L from 'leaflet';
 import {layersControl} from "../../App";
 
 var myImageOverlays = [];
+
 function getHostName() {
   var host = window.location.host;
   let hp = host.split(":");
@@ -49,7 +50,7 @@ function parseKmzMapData(map, mapname, data) {
 }
 
 function loadLocalKmzMaps(map) {
-  let url = "http://" + apiHost + ":8081/localmaps";
+  let url = "http://" + apiHost + ":8081/localmaps/kmz";
   fetch(url)
       .then((res) => res.json())
       .then(

@@ -8,6 +8,7 @@ import '~/lib/leaflet.layer.westraPasses';
 import '~/lib/leaflet.layer.wikimapia';
 import '~/lib/leaflet.layer.radio';
 import '~/lib/leaflet.layer.localMaps';
+import '~/lib/leaflet.layer.localTracks';
 import {GeocachingSu} from '~/lib/leaflet.layer.geocaching-su';
 import {RetinaTileLayer} from '~/lib/leaflet.layer.RetinaTileLayer';
 import {urlViaCorsProxy} from '~/lib/CORSProxy';
@@ -42,7 +43,7 @@ class LayerGroupWithOptions extends L.LayerGroup {
                 },
                 {
                     title: 'CyclOSM',
-                    isDefault: true,
+                    isDefault: false,
                     layer: L.tileLayer('https://{s}.tile-cyclosm.openstreetmap.fr/cyclosm/{z}/{x}/{y}.png',
                         {
                             code: 'Co',
@@ -60,7 +61,7 @@ class LayerGroupWithOptions extends L.LayerGroup {
                 },
                 {
                     title: 'ESRI Satellite',
-                    isDefault: true,
+                    isDefault: false,
                     layer: L.tileLayer(
                         'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
                         {
@@ -109,7 +110,7 @@ class LayerGroupWithOptions extends L.LayerGroup {
                 },
                 {
                     title: 'Google Map',
-                    isDefault: true,
+                    isDefault: false,
                     layer: new L.Layer.GoogleMap(
                         {
                             code: 'G',
@@ -157,7 +158,7 @@ class LayerGroupWithOptions extends L.LayerGroup {
                 },
                 {
                     title: 'Google Terrain',
-                    isDefault: true,
+                    isDefault: false,
                     layer: new L.Layer.GoogleTerrain({
                             code: 'P',
                             isOverlay: false,
@@ -172,7 +173,7 @@ class LayerGroupWithOptions extends L.LayerGroup {
                 },
                 {
                     title: 'Bing Satellite',
-                    isDefault: true,
+                    isDefault: false,
                     layer: new BingLayer(config.bingKey,
                         {
                             code: 'I',
@@ -186,13 +187,13 @@ class LayerGroupWithOptions extends L.LayerGroup {
                 },
                 {
                     title: 'Topomapper 1km',
-                    isDefault: true,
+                    isDefault: false,
                     layer: L.tileLayer(
                         urlViaCorsProxy(
                             'http://88.99.52.155/tmg/{z}/{x}/{y}'
                         ),
                         {
-                            code: 'T',
+                            code: '',
                             isOverlay: false,
                             scaleDependent: false,
                             maxNativeZoom: 13,
@@ -208,7 +209,7 @@ class LayerGroupWithOptions extends L.LayerGroup {
 
                 {
                     title: 'Topo 10km',
-                    isDefault: true,
+                    isDefault: false,
                     layer: L.tileLayer("https://{s}.tiles.nakarte.me/topo001m/{z}/{x}/{y}",
                         {
                             code: 'D',
@@ -225,7 +226,7 @@ class LayerGroupWithOptions extends L.LayerGroup {
                 },
                 {
                     title: 'GGC 2 km',
-                    isDefault: true,
+                    isDefault: false,
                     layer: L.tileLayer("https://{s}.tiles.nakarte.me/ggc2000/{z}/{x}/{y}",
                         {
                             code: 'N',
@@ -242,7 +243,7 @@ class LayerGroupWithOptions extends L.LayerGroup {
                 },
                 {
                     title: 'ArbaletMO',
-                    isDefault: true,
+                    isDefault: false,
                     layer: L.tileLayer("https://{s}.tiles.nakarte.me/ArbaletMO/{z}/{x}/{y}",
                         {
                             code: 'A',
@@ -261,7 +262,7 @@ class LayerGroupWithOptions extends L.LayerGroup {
                 },
                 {
                     title: 'Slazav mountains',
-                    isDefault: true,
+                    isDefault: false,
                     layer: L.tileLayer("https://slazav.xyz/tiles/hr/{x}-{y}-{z}.png",
                         {
                             code: '',
@@ -280,7 +281,7 @@ class LayerGroupWithOptions extends L.LayerGroup {
                 },
                 {
                     title: 'GGC 1km',
-                    isDefault: true,
+                    isDefault: false,
                     layer: L.tileLayer("https://{s}.tiles.nakarte.me/ggc1000/{z}/{x}/{y}",
                         {
                             code: 'J',
@@ -297,7 +298,7 @@ class LayerGroupWithOptions extends L.LayerGroup {
                 },
                 {
                     title: 'Topo 1km',
-                    isDefault: true,
+                    isDefault: false,
                     layer: L.tileLayer("https://{s}.tiles.nakarte.me/topo1000/{z}/{x}/{y}",
                         {
                             code: 'C',
@@ -314,7 +315,7 @@ class LayerGroupWithOptions extends L.LayerGroup {
                 },
                 {
                     title: 'GGC 500m',
-                    isDefault: true,
+                    isDefault: false,
                     layer: L.tileLayer("https://{s}.tiles.nakarte.me/ggc500/{z}/{x}/{y}",
                         {
                             code: 'F',
@@ -331,7 +332,7 @@ class LayerGroupWithOptions extends L.LayerGroup {
                 },
                 {
                     title: 'Topo 500m',
-                    isDefault: true,
+                    isDefault: false,
                     layer: L.tileLayer("https://{s}.tiles.nakarte.me/topo500/{z}/{x}/{y}",
                         {
                             code: 'B',
@@ -348,7 +349,7 @@ class LayerGroupWithOptions extends L.LayerGroup {
                 },
                 {
                     title: 'GGC 250m',
-                    isDefault: true,
+                    isDefault: false,
                     layer: L.tileLayer("https://{s}.tiles.nakarte.me/ggc250/{z}/{x}/{y}",
                         {
                             code: 'K',
@@ -365,7 +366,7 @@ class LayerGroupWithOptions extends L.LayerGroup {
                 },
                 {
                     title: 'Slazav Moscow region map',
-                    isDefault: true,
+                    isDefault: false,
                     layer: L.tileLayer("https://slazav.xyz/tiles/podm/{x}-{y}-{z}.png",
                         {
                             code: 'Z',
@@ -384,7 +385,7 @@ class LayerGroupWithOptions extends L.LayerGroup {
                 },
                 {
                     title: 'Races',
-                    isDefault: true,
+                    isDefault: false,
                     layer: L.tileLayer("https://{s}.tiles.nakarte.me/adraces/{z}/{x}/{y}",
                         {
                             code: 'U',
@@ -401,7 +402,7 @@ class LayerGroupWithOptions extends L.LayerGroup {
                 },
                 {
                     title: 'O-sport',
-                    isDefault: true,
+                    isDefault: false,
                     layer: L.tileLayer("https://{s}.tiles.nakarte.me/osport/{z}/{x}/{y}",
                         {
                             isOverlay: true,
@@ -417,7 +418,7 @@ class LayerGroupWithOptions extends L.LayerGroup {
                 },
                 {
                     title: 'Soviet topo maps grid',
-                    isDefault: true,
+                    isDefault: false,
                     layer: new L.Layer.SovietTopoGrid({
                         code: 'Ng',
                         isOverlay: true,
@@ -439,7 +440,7 @@ class LayerGroupWithOptions extends L.LayerGroup {
                 },
                 {
                     title: 'Mountain passes (Westra)',
-                    isDefault: true,
+                    isDefault: false,
                     layer: new L.Layer.WestraPasses(config.westraDataBaseUrl, {
                         code: 'Wp',
                         print: true,
@@ -607,7 +608,7 @@ class LayerGroupWithOptions extends L.LayerGroup {
                     title: 'Mountains by Aleksey Tsvetkov',
                     description:
                         'Tian Shan, Dzungaria, <a href="http://pereval.g-utka.ru/">http://pereval.g-utka.ru/</a>',
-                    isDefault: true,
+                    isDefault: false,
                     layer: new LayerGroupWithOptions(
                         [
                             L.tileLayer(
@@ -849,7 +850,7 @@ class LayerGroupWithOptions extends L.LayerGroup {
                 },
                 {
                     title: 'mapy.cz tourist',
-                    isDefault: true,
+                    isDefault: false,
                     layer: new RetinaTileLayer(
                         [
                             'https://proxy.nakarte.me/mapy/turist-en/{z}-{x}-{y}',
@@ -1141,6 +1142,17 @@ class LayerGroupWithOptions extends L.LayerGroup {
                       checked: false,
                     })
                 },
+                {
+                  title: 'Local Tracks',
+                  isDefault: true,
+                  layer: new L.LocalTracks({
+                    code: 'T',
+                    isOverlay: true,
+                    print: false,
+                    jnx: false,
+                    checked: false,
+                  })
+                },
     ];
 
     const groupsDefs = [
@@ -1174,6 +1186,7 @@ class LayerGroupWithOptions extends L.LayerGroup {
                 'Wikimapia',
                 'Radio',
                 'Local Maps',
+                'Local Tracks',
                 'Mountain passes (Westra)'
             ],
         },
@@ -1305,6 +1318,7 @@ class LayerGroupWithOptions extends L.LayerGroup {
         'Wikimapia',
         'Radio',
         'Local Maps',
+        'Local Tracks',
 
         // point overlays
         'Mountain passes (Westra)',

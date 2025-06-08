@@ -1,0 +1,16 @@
+.gpx_grid_text_position {
+  font-size: 1.3em;
+  font-family: sans-serif,"Helvetica Neue", Arial, Helvetica;
+
+  color: #fff;
+  fill: #fff;
+  text-shadow: rgb(0, 0, 0) -1px -1px 0px, rgb(0, 0, 0) 1px -1px 0px, rgb(0, 0, 0) -1px 1px 0px, rgb(0, 0, 0) 1px 1px 0px;
+  display: block;
+  top: 0px;
+  left: 0px;
+  margin-left: -9px;
+  margin-top: -20px;
+  background: #ff000000;
+  cursor: pointer;
+  padding: 0px;
+}
