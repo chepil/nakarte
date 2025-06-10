@@ -37,10 +37,10 @@ preconnect(config.CORSProxyUrl);
 preconnect(config.tracksStorageServer);
 
 if (NODE_ENV === 'production') {
-    Sentry.init({
-        dsn: config.sentryDSN,
-        release: RELEASE_VER
-    });
+    // Sentry.init({
+    //    dsn: config.sentryDSN,
+    //    release: RELEASE_VER
+    // });
 }
 
 console.log('Version:', RELEASE_VER); // eslint-disable-line no-console

@@ -55,6 +55,22 @@ function isInIframe() {
     return window.self !== window.top;
 }
 
+function getHostName() {
+    var host = window.location.host;
+    let hp = host.split(":");
+    var brokerhost = host;
+    if (hp.length === 2) {
+        brokerhost = hp[0];
+    }
+    return brokerhost;
+}
+
+function showUploadLocalFiles() {
+    let apiHost = getHostName();
+    let url = "http://" + apiHost + ":8081/upload";
+    window.open(url, '_blank').focus();
+}
+
 function setUp() { // eslint-disable-line complexity
     const startInfo = {
         href: window.location.href,
@@ -150,6 +166,10 @@ function setUp() { // eslint-disable-line complexity
                 {
                     text: 'Copy share link',
                     callback: () => tracklist.copyAllTracksToClipboard(e, true),
+                },
+                {
+                    text: 'Upload Local Maps & Tracks',
+                    callback: () => showUploadLocalFiles(),
                 },
             ]).show(e);
         });

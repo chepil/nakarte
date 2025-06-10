@@ -52,16 +52,14 @@ function parseKmzMapData(map, mapname, data) {
 function loadLocalKmzMaps(map) {
   let url = "http://" + apiHost + ":8081/localmaps/kmz";
   fetch(url)
-      .then((res) => res.json())
-      .then(
-          (items) => {
-            for (const item of items) {
-              let mapname = item['name'];
-              let data = item['data'];
-              parseKmzMapData(map, mapname, data);
-            }
-          }
-      );
+    .then((res) => res.json())
+    .then((items) => {
+      for (const item of items) {
+        let mapname = item['name'];
+        let data = item['data'];
+        parseKmzMapData(map, mapname, data);
+    }
+  });
 }
 
 L.LocalMaps = L.GridLayer.extend({

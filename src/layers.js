@@ -1135,10 +1135,10 @@ class LayerGroupWithOptions extends L.LayerGroup {
                     title: 'Local Maps',
                     isDefault: true,
                     layer: new L.LocalMaps({
-                        code: 'Q',
-                        isOverlay: true,
-                        print: false,
-                        jnx: false,
+                      code: 'Q',
+                      isOverlay: true,
+                      print: false,
+                      jnx: false,
                       checked: false,
                     })
                 },
