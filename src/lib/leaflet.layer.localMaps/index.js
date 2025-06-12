@@ -50,7 +50,7 @@ function parseKmzMapData(map, mapname, data) {
 }
 
 function loadLocalKmzMaps(map) {
-  let url = "http://" + apiHost + ":8081/localmaps/kmz";
+  let url = "http://" + apiHost + "/myapi/localmaps/kmz";
   fetch(url)
     .then((res) => res.json())
     .then((items) => {

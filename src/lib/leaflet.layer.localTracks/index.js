@@ -26,7 +26,7 @@ function parseGpxMapFile(map, filename) {
 
     var mapPolylineOverlays = [];
 
-    let url = "http://" + apiHost + ":8081/download/gpx/" + filename;
+    let url = "http://" + apiHost + "/myapi/download/gpx/" + filename;
     fetch(url)
     .then((res) => res.text())
     .then((text) => {
@@ -69,7 +69,7 @@ function parseGpxMapFile(map, filename) {
 }
 
 function loadLocalGpxTracks(map) {
-  let url = "http://" + apiHost + ":8081/localtracks/gpx";
+  let url = "http://" + apiHost + "/myapi/localtracks/gpx";
   fetch(url)
     .then((res) => res.json())
     .then((items) => {

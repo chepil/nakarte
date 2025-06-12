@@ -67,7 +67,7 @@ function getHostName() {
 
 function showUploadLocalFiles() {
     let apiHost = getHostName();
-    let url = "http://" + apiHost + ":8081/upload";
+    let url = "http://" + apiHost + "/myapi/upload";
     window.open(url, '_blank').focus();
 }
 

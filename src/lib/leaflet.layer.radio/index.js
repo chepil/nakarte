@@ -79,7 +79,7 @@ function loadMarkers(map) {
       addMarker(map, stationId, lat, lng);
     });
   }
-  let url = "http://" + brokerhost + ":8081/locations";
+  let url = "http://" + brokerhost + "/myapi/locations";
   // logging.captureMessage("will request " + url);
   fetch(url)
       .then((res) => res.json())

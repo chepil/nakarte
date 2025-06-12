@@ -1,4 +1,4 @@
-import * as Sentry from '@sentry/browser';
+// import * as Sentry from '@sentry/browser';
 import './index.css';
 import * as App from './App';
 import config from './config';
@@ -53,9 +53,9 @@ try {
 }
 console.log('UID:', uid); // eslint-disable-line no-console
 
-Sentry.configureScope(function(scope) {
-    scope.setUser({id: uid});
-});
+// Sentry.configureScope(function(scope) {
+//    scope.setUser({id: uid});
+// });
 
 App.setUp();
 
