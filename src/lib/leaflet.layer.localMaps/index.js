@@ -32,7 +32,7 @@ function parseKmzMapData(map, mapname, data) {
       let south = entry['south'];
       let east = entry['east'];
       let west = entry['west'];
-      let imageUrl = "http://" + localMapsHost + "/maps/kmz/" + mapname + "/" + file;
+      let imageUrl = "http://" + localMapsHost + "/public/maps/kmz/" + mapname + "/" + file;
       let imageBounds = [[north, east], [south, west]];
       let i = L.imageOverlay(imageUrl, imageBounds);
       mapImageOverlays.push(i);
